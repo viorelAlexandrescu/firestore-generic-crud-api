@@ -1,4 +1,4 @@
-package ro.avs.model;
+package ro.avs.fgca.model;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,9 +1,9 @@
-package ro.avs.dao;
+package ro.avs.fgca.dao;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
-import ro.avs.model.BaseEntity;
+import ro.avs.fgca.model.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
