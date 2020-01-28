@@ -1,10 +1,8 @@
 package ro.avs.fgca.controller;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.avs.fgca.model.BaseEntity;
+import ro.avs.fgca.model.ChangesDTO;
 import ro.avs.fgca.service.BaseService;
 
 import java.util.List;
@@ -19,7 +17,7 @@ public abstract class BaseController<T extends BaseEntity> {
     }
 
     @PostMapping("/create")
-    public void save(T entry) {
+    public void save(@RequestBody T entry) {
         service.addDocument(entry);
     }
 
@@ -29,17 +27,22 @@ public abstract class BaseController<T extends BaseEntity> {
     }
 
     @GetMapping("/read")
-    public T getById(String id) throws ExecutionException, InterruptedException {
+    public T getById(@RequestParam String id) throws ExecutionException, InterruptedException {
         return service.getById(id);
     }
 
     @PutMapping("/update")
-    public void update(T entry) {
+    public void update(@RequestBody T entry) {
         service.updateDocument(entry);
     }
 
+    @PutMapping("/update-fields")
+    public void update(@RequestBody ChangesDTO changes) {
+        service.updateDocument(changes);
+    }
+
     @DeleteMapping("/delete")
-    public void delete(String id) {
+    public void delete(@RequestParam String id) {
         service.deleteDocument(id);
     }
 }

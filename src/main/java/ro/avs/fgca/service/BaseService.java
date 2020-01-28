@@ -2,6 +2,7 @@ package ro.avs.fgca.service;
 
 import ro.avs.fgca.dao.BaseDAO;
 import ro.avs.fgca.model.BaseEntity;
+import ro.avs.fgca.model.ChangesDTO;
 
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -28,6 +29,10 @@ public class BaseService<T extends BaseEntity> {
 
     public void updateDocument(T entry) {
         dao.updateDocument(entry);
+    }
+
+    public void updateDocument(ChangesDTO changesDTO) {
+        dao.updateDocument(changesDTO.getId(), changesDTO.getChanges());
     }
 
     public void deleteDocument(String id) {

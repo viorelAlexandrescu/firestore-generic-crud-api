@@ -7,6 +7,7 @@ import ro.avs.fgca.model.BaseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public abstract class BaseDAO<T extends BaseEntity> {
@@ -51,6 +52,10 @@ public abstract class BaseDAO<T extends BaseEntity> {
 
     public void updateDocument(T entry) {
         getCollection().document(entry.getId()).set(entry);
+    }
+
+    public void updateDocument(String id, Map<String, Object> changes) {
+        getCollection().document(id).set(changes, SetOptions.merge());
     }
 
     public void deleteDocument(String id) {
